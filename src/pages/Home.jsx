@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Home = () => {
 
@@ -25,12 +26,14 @@ const Home = () => {
             {listings.map((listing, key) => {
                 console.log(listing.title)
                 return (
-                    <div className="listing" key={key} >
-                        <Card style={ {color: "black"} }>
+                    <div  className="listing" key={key} >
+                        <Card className='mb-3' style={ {color: "black"} }>
                             <Card.Body>
-                                <h2>{listing.title}</h2>
+                                <Link style={ {color: "#3617ff"} } to={`/listing/${listing._id}`} >
+                                    <h2>{listing.title}</h2>
+                                </Link>
                                 <img className="listing-image" src={listing.image} alt="listing image" />
-                                <p>{listing.description}</p>
+
                             </Card.Body>
                         </Card>
                     </div>
