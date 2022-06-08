@@ -11,6 +11,7 @@ import Register from './pages/Register';
 import UserAccount from './pages/UserAccount';
 import NewListing from './pages/NewListing';
 import Listing from './pages/Listing';
+import NewAccount from './pages/NewAccount'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -25,6 +26,7 @@ root.render(
           <Route path='/account' element={<Account />} >
             <Route path=':id' element={<Account />} />
           </Route>
+          <Route path='/create_account' element={<NewAccount />} />
           <Route path='/new' element={<NewListing />} />
           <Route path='/myaccount' element={<UserAccount />} />
         </Route>
