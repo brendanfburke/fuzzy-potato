@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 const Register = () => {
     return (
         <div className="register">
-            <Card.Body>
                 <Form>
                     <Form.Label>Enter a username here</Form.Label>
                     <Form.Control type='username' placeholder='Ex: guitarseller33'></Form.Control>
@@ -13,7 +12,6 @@ const Register = () => {
                     <Form.Control type='password' placeholder='Ex: ILoveGuitars44!'></Form.Control>
                     <Button className="mt-3" variant='primary' type='submit' >Create Account</Button>
                 </Form>
-            </Card.Body>
             <p>Already have an account? Return to the <Link to='/login'>Login Page</Link></p>
         </div>
     )

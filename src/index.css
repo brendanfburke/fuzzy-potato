@@ -36,3 +36,15 @@ body {
   text-align: center;
   align-items: center;
 }
+
+.listing-image {
+  height: 10vh;
+}
+
+.listing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 40vw;
+}
