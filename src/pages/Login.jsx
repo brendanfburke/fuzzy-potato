@@ -1,8 +1,10 @@
 import React from "react";
-import { Button, Form, Card } from "react-bootstrap/esm";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useState, useEffect } from "react";
+import Axios from "axios"
+
+
 
 const Login = () => {
 
@@ -15,7 +17,6 @@ const Login = () => {
 
     const [user, setUser] = useState(null)
     const URL = 'https://instrument-swap-backend.herokuapp.com/login'
-    const URL2 = 'https://instrument-swap-backend.herokuapp.com/users'
 
     const [newForm, setNewForm] = useState({
         username: '',
@@ -46,19 +47,30 @@ const Login = () => {
         
     // }, [])
 
-    const loginRequest = async (userAccount) => {
-        await fetch(URL, {
-            method: "post",
-            headers: {
-                "Content-Type": "application/json",
-            },
-                body: JSON.stringify(userAccount),
-        }) 
-        .then((response) => {
-            console.log(response.data)
-        })
+    // const loginRequest = async (userAccount) => {
+    //     await fetch(URL, {
+    //         method: "post",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         },
+    //             body: JSON.stringify(userAccount),
+    //     }) 
+    //     .then((res) => {
+    //         console.log(res)
+    //     })
         
-    };
+    // };
+
+
+    const loginRequest = async () => {
+        await Axios.post(URL, {
+            username: newForm.username,
+            password: newForm.password
+        }).then((response) => {
+            console.log(response.data.token)
+            localStorage.setItem('token', response.data.token)
+        })
+    }
 
     return (
         <div className="login">
