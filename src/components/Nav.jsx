@@ -5,10 +5,10 @@ import Button from "react-bootstrap/Button"
 const Nav = () => {
     return (
         <div className="nav-container">
-            <Link to='/' >
+            <Link className="nav-link" to='/' >
                 <Button>Home</Button>
             </Link>
-            <Link to='/new' >
+            <Link className="nav-link" to='/new' >
                 <Button>New Listing</Button>
             </Link>
         </div>
