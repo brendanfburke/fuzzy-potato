@@ -1,7 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 
 const NewListing = () => {
+
+    let navigate = useNavigate()
+
+    
 
     const [listings, setListings] = useState(null)
     const URL = 'https://instrument-swap-backend.herokuapp.com/listings'
@@ -31,21 +36,24 @@ const NewListing = () => {
         const data = await response.json()
         setListings(data)
         console.log(data)
+        console.log(data[data.length-1]._id)
     };
     useEffect(() => {
         getListings()
         
     }, [])
-
+    
     const createListing = async (listing) => {
         await fetch(URL, {
             method: "post",
             headers: {
                 "Content-Type": "application/json",
             },
-                body: JSON.stringify(listing),
+            body: JSON.stringify(listing),
         });
         getListings();
+        let path = `/upload_image/${listings[listings.length-1]._id}`
+        navigate(path)
     };
 
     
@@ -58,14 +66,14 @@ const NewListing = () => {
                 type="text"
                 value={newForm.title}
                 name="title"
-                placeholder="name"
+                placeholder="title"
                 onChange={handleChange}
             />
             <input
                 type="text"
                 value={newForm.description}
                 name="description"
-                placeholder="title"
+                placeholder="description"
                 onChange={handleChange}
             />
             <input

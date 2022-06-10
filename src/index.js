@@ -30,7 +30,9 @@ root.render(
           <Route path='/create_account' element={<NewAccount />} />
           <Route path='/new' element={<NewListing />} />
           <Route path='/myaccount' element={<UserAccount />} />
-          <Route path='upload_image' element={<ImageUpload />} />
+          <Route path='/upload_image' element={<ImageUpload />} >
+            <Route path=':id' element={<ImageUpload />} />
+          </Route>
         </Route>
       </Routes>
     </Router>
