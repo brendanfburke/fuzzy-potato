@@ -15,7 +15,6 @@ const Login = () => {
         navigate(path)
     }
 
-    const [user, setUser] = useState(null)
     const URL = 'https://instrument-swap-backend.herokuapp.com/login'
 
     const [newForm, setNewForm] = useState({
@@ -36,31 +35,6 @@ const Login = () => {
         })
     }
 
-    // const getUsers = async () => {
-    //     const response = await fetch(URL)
-    //     const data = await response.json()
-    //     setUser(data)
-    //     console.log(data)
-    // };
-    // useEffect(() => {
-    //     getUsers()
-        
-    // }, [])
-
-    // const loginRequest = async (userAccount) => {
-    //     await fetch(URL, {
-    //         method: "post",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //         },
-    //             body: JSON.stringify(userAccount),
-    //     }) 
-    //     .then((res) => {
-    //         console.log(res)
-    //     })
-        
-    // };
-
     const warningMessage = ''
 
 
@@ -71,7 +45,7 @@ const Login = () => {
         }).then((response) => {
             console.log(response.data)
             localStorage.setItem('token', response.data.token)
-            if (response.data.isLoggedIn === true) {
+            if (response) {
                 goHome()
             } else {
                 warningMessage = 'incorrect username or password, please try again or register a new account'
