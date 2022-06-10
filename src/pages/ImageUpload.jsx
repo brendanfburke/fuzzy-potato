@@ -13,17 +13,21 @@ const ImageUpload = () => {
         console.log(e.target.files[0])
     }
     const imageSubmit = async (file) => {
-        await fetch(URL, {
+        const imageFetch = await fetch(URL, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
+                'Accept': 'application/json, text/plain, */*',
             },
-            body: JSON.stringify(file),
-        }).then((response) => {
-            console.log(response)
-        }).catch(error => {
-            console.log(error)
-        }) 
+            body: JSON.stringify(file)
+        })
+        const response = await imageFetch.json()
+        console.log(response)
+        // .then((response) => {
+        //     console.log(response)
+        // }).catch(error => {
+        //     console.log(error)
+        // }) 
     }
 
     const handleSubmit = (e) => {
