@@ -1,8 +1,8 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const NewAccount = () => {
-    const [account, setAccount] = useState(null)
+    // const [account, setAccount] = useState(null)
     const URL = 'https://instrument-swap-backend.herokuapp.com/account'
 
     const [newForm, setNewForm] = useState({
@@ -34,17 +34,18 @@ const NewAccount = () => {
             email_address: ''
         })
     }
+    // const getAccounts = async () => {
+    //     const response = await fetch(URL)
+    //     const data = await response.json()
+    //     setAccount(data)
+    //     console.log(data)
+    //     console.log(account)
+    // };
 
-    const getAccounts = async () => {
-        const response = await fetch(URL)
-        const data = await response.json()
-        setAccount(data)
-        console.log(data)
-    };
-    useEffect(() => {
-        getAccounts()
-        
-    }, [])
+    // useEffect(() => {
+    //     getAccounts()
+    
+    // }, [])
 
     const createAccount = async (listing) => {
         await fetch(URL, {
@@ -54,7 +55,7 @@ const NewAccount = () => {
             },
                 body: JSON.stringify(listing),
         });
-        getAccounts();
+        // getAccounts();
     };
 
     

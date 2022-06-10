@@ -1,44 +1,43 @@
 import React from "react";
-import { useParams } from "react-router";
 import { useState } from "react";
-import Axios from "axios";
 
 const ImageUpload = () => {
-    const params = useParams()
+
 
     const URL = 'https://instrument-swap-backend.herokuapp.com/single'
 
     const [newForm, setNewForm] = useState(null)
 
     const handleChange = (e) => {
-        setNewForm(e.target.file[0])
+        setNewForm(e.target.files[0])
         console.log(e.target.files[0])
+    }
+    const imageSubmit = async (file) => {
+        await fetch(URL, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(file),
+        }).then((response) => {
+            console.log(response)
+        }).catch(error => {
+            console.log(error)
+        }) 
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(typeof(newForm))
         imageSubmit(newForm);
-        setNewForm({
-            username: '',
-            password: '',
-        })
     }
 
 
 
-    const imageSubmit = async () => {
-        await Axios.post(URL, newForm, {mode: 'cors'}).then((response) => {
-            console.log(response)
-            // if (response) {
-            // } else {
-            //     warningMessage = 'incorrect username or password, please try again or register a new account'
-            // }
-        })
-    }
 
     return (
-        <div className="login">
-            <form onSubmit={handleSubmit}  className='new-account-form'>
+        <div className="image_uploader">
+            <form onSubmit={handleSubmit}  className='image-upload-form'>
                 <input type="file" onChange={handleChange} /> 
                 <button>Upload</button>
             </form>
