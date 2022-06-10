@@ -10,10 +10,10 @@ const Login = () => {
 
     let navigate = useNavigate()
 
-    // const goHome = () => {
-    //     let path='/'
-    //     navigate(path)
-    // }
+    const goHome = () => {
+        let path='/'
+        navigate(path)
+    }
 
     const [user, setUser] = useState(null)
     const URL = 'https://instrument-swap-backend.herokuapp.com/login'
@@ -61,14 +61,21 @@ const Login = () => {
         
     // };
 
+    const warningMessage = ''
+
 
     const loginRequest = async () => {
         await Axios.post(URL, {
             username: newForm.username,
             password: newForm.password
         }).then((response) => {
-            console.log(response.data.token)
+            console.log(response.data)
             localStorage.setItem('token', response.data.token)
+            if (response.data.isLoggedIn === true) {
+                goHome()
+            } else {
+                warningMessage = 'incorrect username or password, please try again or register a new account'
+            }
         })
     }
 
@@ -94,7 +101,8 @@ const Login = () => {
                 
                 <input type="submit" value="Login" />
         </form>
-            <p>Don't have an account? Create one <Link to='/register'>here</Link></p>
+        <p>{warningMessage}</p>
+        <p>Don't have an account? Create one <Link to='/register'>here</Link></p>
         </div>
     )
 }
