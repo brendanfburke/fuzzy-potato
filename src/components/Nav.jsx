@@ -8,8 +8,14 @@ const Nav = () => {
             <Link className="nav-link" to='/' >
                 <Button>Home</Button>
             </Link>
+            <Link className="nav-link" to='/login' >
+                <Button>Login</Button>
+            </Link>
             <Link className="nav-link" to='/new' >
                 <Button>New Listing</Button>
+            </Link>
+            <Link className="nav-link" to='/myaccount' >
+                <Button>My Account</Button>
             </Link>
         </div>
     )

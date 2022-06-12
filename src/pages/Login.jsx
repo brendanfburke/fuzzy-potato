@@ -1,19 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Axios from "axios"
 
 
 
 const Login = () => {
-
-    let navigate = useNavigate()
+    
+    const navigate = useNavigate()
 
     const goHome = () => {
         let path='/'
         navigate(path)
     }
+
+
+    const [warningMessage, setWarningMessage] = useState('null')
+
 
     const URL = 'https://instrument-swap-backend.herokuapp.com/login'
 
@@ -35,7 +39,6 @@ const Login = () => {
         })
     }
 
-    const warningMessage = ''
 
 
     const loginRequest = async () => {
@@ -45,13 +48,15 @@ const Login = () => {
         }).then((response) => {
             console.log(response.data)
             localStorage.setItem('token', response.data.token)
-            if (response) {
+            if (response.data.isLoggedIn === true) {
                 goHome()
-            } else {
-                warningMessage = 'incorrect username or password, please try again or register a new account'
+                console.log( response.data.user.username + ' is logged in correctly')
+            } else if (response.status === 'password invalid') {
+                setWarningMessage('incorrect username or password, please try again or register a new account')
             }
         })
     }
+
 
     return (
         <div className="login">

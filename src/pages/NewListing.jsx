@@ -7,14 +7,15 @@ const NewListing = () => {
     let navigate = useNavigate()
 
     
-
+    // eslint-disable-next-line
     const [listings, setListings] = useState(null)
-    const URL = 'https://instrument-swap-backend.herokuapp.com/listings'
+    const URL = 'https://instrument-swap-backend.herokuapp.com/listings/new'
 
     const [newForm, setNewForm] = useState({
         title: '',
         description: '',
         image: '',
+        user: '',
     })
 
     const handleChange = (e) => {
@@ -28,31 +29,41 @@ const NewListing = () => {
             title: '',
             description: '',
             image: '',
+            user: ''
         })
     }
 
     const getListings = async () => {
-        const response = await fetch(URL)
+        const response = await fetch(URL, {
+            method: 'GET',
+            headers: {
+                'Authorization': "Bearer " + currentToken
+            }
+        })
         const data = await response.json()
         setListings(data)
         console.log(data)
-        console.log(data[data.length-1]._id)
+        newForm.user = data._id
     };
+    
     useEffect(() => {
         getListings()
-        
+        // eslint-disable-next-line
     }, [])
-    
+
+    const currentToken = localStorage.getItem('token')
+
     const createListing = async (listing) => {
         await fetch(URL, {
             method: "post",
             headers: {
                 "Content-Type": "application/json",
+                'Authorization': "Bearer " + currentToken,
             },
             body: JSON.stringify(listing),
         });
         getListings();
-        let path = `/upload_image/${listings[listings.length-1]._id}`
+        let path = `/`
         navigate(path)
     };
 
@@ -81,6 +92,13 @@ const NewListing = () => {
                 value={newForm.image}
                 name="image"
                 placeholder="image URL"
+                onChange={handleChange}
+            />
+            <input
+                type="text"
+                value={newForm.user}
+                name="user"
+                placeholder="user id"
                 onChange={handleChange}
             />
             <input type="submit" value="Create Listing" />
