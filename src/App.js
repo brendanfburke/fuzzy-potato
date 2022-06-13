@@ -6,7 +6,6 @@ import Nav from "./components/Nav";
 
 function App() {
   const location = useLocation()
-  console.log(location.pathname)
     if (location.pathname == '/login') {
       return (
         <div className="App">
