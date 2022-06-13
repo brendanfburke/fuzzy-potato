@@ -70,7 +70,7 @@ const Login = () => {
                 />
                 <label htmlFor="first_name">Password</label>
                 <input
-                    type="text"
+                    type="password"
                     value={newForm.password}
                     name="password"
                     placeholder="Ex: beatle2"
