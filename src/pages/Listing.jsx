@@ -4,6 +4,8 @@ import { Card } from "react-bootstrap";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import{ CopyToClipboard }from 'react-copy-to-clipboard'
+
 
 const Listing = () => {
 
@@ -72,9 +74,15 @@ const Listing = () => {
                 {userInfo.map((user, key) => {
                     if (user.user_id === listing.user) {
                         return (
-                            <Link to={`/account/${user.user_id}`} >
-                                <h2>{user.first_name}</h2>
-                            </Link>
+                            <div className="user-info">
+                                <Link to={`/account/${user.user_id}`} >
+                                    <h2>{user.first_name}</h2>
+                                </Link>
+                                <CopyToClipboard text={user.email_address}>
+                                <p>Contact seller: <button>Click to copy email</button></p>
+                                
+                                </CopyToClipboard>
+                            </div>
                         )
                     }
                 })}
