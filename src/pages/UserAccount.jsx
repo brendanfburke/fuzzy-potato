@@ -71,6 +71,8 @@ const UserAccount = () => {
                             <div className="account-info-box" key={key}>
                                 <h2>{info.first_name} {info.last_name}</h2>
                                 <h3>Location: {info.location}</h3>
+                                <br />
+                                <h3>{info.first_name}'s Listings</h3>
                             </div>
                         )
                     } 

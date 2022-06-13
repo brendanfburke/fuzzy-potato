@@ -11,7 +11,7 @@ const Login = () => {
     const navigate = useNavigate()
 
     const goHome = () => {
-        let path='/'
+        let path='/first_login'
         navigate(path)
     }
 
@@ -19,7 +19,10 @@ const Login = () => {
     const [warningMessage, setWarningMessage] = useState('null')
 
 
+
     const URL = 'https://instrument-swap-backend.herokuapp.com/login'
+
+
 
     const [newForm, setNewForm] = useState({
         username: '',
@@ -58,6 +61,7 @@ const Login = () => {
     }
 
 
+
     return (
         <div className="login">
             <form onSubmit={handleSubmit} className='new-account-form'>
@@ -80,7 +84,6 @@ const Login = () => {
                 
                 <input type="submit" value="Login" />
         </form>
-        <p>{warningMessage}</p>
         <p>Don't have an account? Create one <Link to='/register'>here</Link></p>
         </div>
     )

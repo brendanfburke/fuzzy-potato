@@ -14,6 +14,7 @@ import Listing from './pages/Listing';
 import NewAccount from './pages/NewAccount'
 import ImageUpload from './pages/ImageUpload';
 import UpdateListing from './pages/UpdateListing';
+import FirstTime from './pages/FirstTime';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -35,6 +36,7 @@ root.render(
           <Route path='/upload_image' element={<ImageUpload />} >
             <Route path=':id' element={<ImageUpload />} />
           </Route>
+          <Route path='/first_login' element={<FirstTime />} />
         </Route>
       </Routes>
     </Router>

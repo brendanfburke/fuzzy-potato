@@ -21,6 +21,13 @@ function App() {
           <Outlet />
         </div>
       );
+    } else if (location.pathname == '/first_login') {
+      return (
+        <div className="App">
+          <h1>Instrument Swap</h1>
+          <Outlet />
+        </div>
+      );
     } else {
       return (
         <div className="App">

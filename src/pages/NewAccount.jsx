@@ -1,11 +1,19 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router";
 
 const NewAccount = () => {
     const [account, setAccount] = useState(null)
     const URL = 'https://instrument-swap-backend.herokuapp.com/account'
 
     const accountId = useRef()
+
+    const navigate = useNavigate()
+
+    const goHome = () => {
+        let path = '/'
+        navigate(path)
+    }
 
     
     const currentToken = localStorage.getItem('token')
@@ -38,6 +46,7 @@ const NewAccount = () => {
             location: '',
             email_address: ''
         })
+        goHome()
     }
     const getAccount = async () => {
         const response = await fetch(URL, {
@@ -80,9 +89,8 @@ const NewAccount = () => {
         return (
             <section>
             <form onSubmit={handleSubmit} className='new-account-form'>
-                <label htmlFor="user_id">User Id</label>
                 <input
-                    type="text"
+                    type="hidden"
                     value={newForm.user_id}
                     ref={accountId}
                     name="user_id"
@@ -144,9 +152,8 @@ const NewAccount = () => {
                     placeholder="Ex: me@you.com"
                     onChange={handleChange}
                 />
-                <input type="submit" value="Create Listing" />
+                <input type="submit" value="Create Account" />
             </form>
-            {/* {listings ? loaded() : loading()} */}
         </section>
         )
     }

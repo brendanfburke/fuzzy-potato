@@ -3,13 +3,18 @@ import { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 const Listing = () => {
 
     const params = useParams()
     const [listing, setListing] = useState(null)
+    const [userInfo, setUserInfo] = useState(null)
     const URL = `https://instrument-swap-backend.herokuapp.com/listings/${params.id}`
     const navigate = useNavigate()
+
+
+    const currentToken = localStorage.getItem('token')
 
     const goHome = () => {
         let path = '/'
@@ -26,9 +31,22 @@ const Listing = () => {
         setListing(data)
         console.log(data)
     };
+
+    const getInfo = async () => {
+        const response = await fetch(`https://instrument-swap-backend.herokuapp.com/account/fgdho`, {
+            method: 'GET',
+            headers: {
+                'Authorization': "Bearer " + currentToken
+        }
+        })
+        const data = await response.json()
+        setUserInfo(data)
+        console.log(data)
+    }
+
     useEffect(() => {
         getListing()
-        
+        getInfo()
     }, [])
 
     const deleteListing = async () => {
@@ -38,36 +56,40 @@ const Listing = () => {
         goHome()
     };
 
-
-
-    // const updateListing = async (listing) => {
-    //     const response = await fetch(`URL/${update}`, {
-    //         method: 'PUT',
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             'Authorization': "Bearer " + currentToken,
-    //         },
-    //         body: JSON.stringify(listing),
-    //     })
-    //     goHome()
-    // };
+    const thisUser = () => {
+    }
     
-
+    
+    
+    
+    
     const loaded = () => {
         
-             
+        
         return (
-            <div  className="listing" >
-                <Card className='mb-3' style={ {color: "black"} }>
-                    <Card.Body>
-                        <h2>{listing.title}</h2>
-                        <img className="listing-image" src={listing.image} alt="listing image" />
-                        <p>{listing.description}</p>
-                        <button onClick={deleteListing}>Delete Listing</button>
-                        <button onClick={goUpdate} >Update </button>
+            <div className="listing-page">
+                
+                {userInfo.map((user, key) => {
+                    if (user.user_id === listing.user) {
+                        return (
+                            <Link to={`/account/${user.user_id}`} >
+                                <h2>{user.first_name}</h2>
+                            </Link>
+                        )
+                    }
+                })}
+                <div  className="listing" >
+                    <Card className='mb-3 listing-card' style={ {color: "black"} }>
+                        <Card.Body>
+                            <h2>{listing.title}</h2>
+                            <img className="listing-image" src={listing.image} alt="listing image" />
+                            <p>{listing.description}</p>
+                            <button onClick={deleteListing}>Delete Listing</button>
+                            <button onClick={goUpdate} >Update </button>
 
-                    </Card.Body>
-                </Card>
+                        </Card.Body>
+                    </Card>
+                </div>
             </div>
         )
     }
@@ -76,7 +98,7 @@ const Listing = () => {
         return <p>loading...</p>
     }
 
-    return listing ? loaded() : loading()
+    return listing && userInfo ? loaded() : loading()
 }
 
 export default Listing

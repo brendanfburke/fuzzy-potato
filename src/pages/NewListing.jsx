@@ -95,7 +95,7 @@ const NewListing = () => {
                 onChange={handleChange}
             />
             <input
-                type="text"
+                type="hidden"
                 value={newForm.user}
                 name="user"
                 placeholder="user id"
