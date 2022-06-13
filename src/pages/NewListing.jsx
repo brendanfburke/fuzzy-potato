@@ -42,7 +42,6 @@ const NewListing = () => {
         })
         const data = await response.json()
         setListings(data)
-        console.log(data)
         newForm.user = data._id
     };
     

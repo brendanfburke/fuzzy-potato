@@ -18,8 +18,8 @@ const FirstTime = () => {
     return (
         <div className="first-login">
             <h2>Is this your first time logging in?</h2>
-            <button onClick={goSetupAccount} >Yes</button>
-            <button onClick={goHome} >No</button>
+            <button className="first-time-button-left" onClick={goSetupAccount} >Yes</button>
+            <button className="first-time-button-right" onClick={goHome} >No</button>
         </div>
     )
 }

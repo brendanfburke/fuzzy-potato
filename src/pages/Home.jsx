@@ -12,7 +12,6 @@ const Home = () => {
         const response = await fetch(URL)
         const data = await response.json()
         setListings(data)
-        console.log(data)
     };
     useEffect(() => {
         getListings()

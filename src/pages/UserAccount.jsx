@@ -27,7 +27,6 @@ const UserAccount = () => {
         })
         const data = await response.json()
         setAccount(data)
-        console.log(data) 
     };
 
     const getInfo = async () => {
@@ -39,14 +38,12 @@ const UserAccount = () => {
         })
         const data = await response.json()
         setUserInfo(data)
-        console.log(data)
     }
 
     const getListings = async () => {
         const response = await fetch('https://instrument-swap-backend.herokuapp.com/listings')
         const data = await response.json()
         setListings(data)
-        console.log(data)
     };
 
 

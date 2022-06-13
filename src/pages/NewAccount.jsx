@@ -57,7 +57,6 @@ const NewAccount = () => {
         })
         const data = await response.json()
         setAccount(data)
-        console.log(data)
         newForm.user_id = data._id
     };
     

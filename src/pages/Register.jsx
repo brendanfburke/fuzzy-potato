@@ -40,7 +40,6 @@ const Register = () => {
             username: newForm.username,
             password: newForm.password
         }).then((response) => {
-            console.log(response)
             goLogin()
         })
     }

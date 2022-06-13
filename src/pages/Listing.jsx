@@ -31,7 +31,6 @@ const Listing = () => {
         const response = await fetch(URL)
         const data = await response.json()
         setListing(data)
-        console.log(data)
     };
 
     const getInfo = async () => {
@@ -43,7 +42,6 @@ const Listing = () => {
         })
         const data = await response.json()
         setUserInfo(data)
-        console.log(data)
     }
 
     useEffect(() => {

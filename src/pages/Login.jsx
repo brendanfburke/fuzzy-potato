@@ -16,7 +16,6 @@ const Login = () => {
     }
 
 
-    const [warningMessage, setWarningMessage] = useState('null')
 
 
 
@@ -49,14 +48,10 @@ const Login = () => {
             username: newForm.username,
             password: newForm.password
         }).then((response) => {
-            console.log(response.data)
             localStorage.setItem('token', response.data.token)
             if (response.data.isLoggedIn === true) {
                 goHome()
-                console.log( response.data.user.username + ' is logged in correctly')
-            } else if (response.status === 'password invalid') {
-                setWarningMessage('incorrect username or password, please try again or register a new account')
-            }
+            } 
         })
     }
 

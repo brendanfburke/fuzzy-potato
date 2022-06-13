@@ -43,7 +43,6 @@ const UpdateListing = () => {
         })
         const data = await response.json()
         setListings(data)
-        console.log(data)
     };
     
     useEffect(() => {

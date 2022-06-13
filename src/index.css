@@ -61,3 +61,11 @@ body {
   width: 100vw;
   margin-bottom: 5vh;
 }
+
+.first-time-button-left {
+  margin-right: 30px;
+  margin-top: 40px;
+}
+.first-time-button-right {
+  margin-left: 300px;
+}
